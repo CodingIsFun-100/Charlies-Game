@@ -1,10 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8drbos167vf8"]
+[gd_scene load_steps=4 format=3 uid="uid://b8drbos167vf8"]
 
 [ext_resource type="Script" path="res://Player/Head.gd" id="1_enjfg"]
 
+[sub_resource type="Gradient" id="Gradient_b18lh"]
+offsets = PackedFloat32Array(0, 0.514085, 0.683099, 1)
+colors = PackedColorArray(0.929715, 0.929715, 0.929715, 1, 0.637843, 0.637843, 0.637843, 1, 0.705159, 0.705159, 0.705159, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_um7ks"]
+gradient = SubResource("Gradient_b18lh")
+fill = 1
+fill_from = Vector2(0.495146, 0.5)
+fill_to = Vector2(0.917476, 0.18932)
+
 [node name="Head" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
-script = ExtResource( "1_enjfg" )
+script = ExtResource("1_enjfg")
 
 [node name="Camera" type="Camera3D" parent="."]
 current = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+light_color = Color(1, 0.663609, 0.357344, 1)
+light_energy = 20.567
+light_projector = SubResource("GradientTexture2D_um7ks")
+light_specular = 2.601
+shadow_enabled = true
+spot_range = 22.1411
+spot_angle = 18.9821

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d2vgv6ie0v40s"]
+[gd_scene load_steps=23 format=3 uid="uid://d2vgv6ie0v40s"]
 
 [ext_resource type="Script" path="res://Levels/Main/L_Main.gd" id="1_km1jj"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://Player/Player.tscn" id="1_qgept"]
@@ -54,20 +54,27 @@ size = Vector3(14, 0.5, 4)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_do582"]
 data = PackedVector3Array(-7, 0.25, 2, 7, 0.25, 2, -7, -0.25, 2, 7, 0.25, 2, 7, -0.25, 2, -7, -0.25, 2, 7, 0.25, -2, -7, 0.25, -2, 7, -0.25, -2, -7, 0.25, -2, -7, -0.25, -2, 7, -0.25, -2, 7, 0.25, 2, 7, 0.25, -2, 7, -0.25, 2, 7, 0.25, -2, 7, -0.25, -2, 7, -0.25, 2, -7, 0.25, -2, -7, 0.25, 2, -7, -0.25, -2, -7, 0.25, 2, -7, -0.25, 2, -7, -0.25, -2, 7, 0.25, 2, -7, 0.25, 2, 7, 0.25, -2, -7, 0.25, 2, -7, 0.25, -2, 7, 0.25, -2, -7, -0.25, 2, 7, -0.25, 2, -7, -0.25, -2, 7, -0.25, 2, 7, -0.25, -2, -7, -0.25, -2)
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ggqlx"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_t5ash"]
-sky_material = SubResource("ProceduralSkyMaterial_ggqlx")
-
 [sub_resource type="Environment" id="Environment_7ofk6"]
-background_mode = 2
-sky = SubResource("Sky_t5ash")
+background_mode = 1
+ambient_light_source = 1
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.9
+reflected_light_source = 2
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_light_energy = 0.0
+fog_density = 5.0
+fog_depth_curve = 0.5
+fog_depth_begin = 1.0
+fog_depth_end = 500.0
+volumetric_fog_density = 0.0
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_anisotropy = 0.14
+volumetric_fog_length = 1.0
+volumetric_fog_detail_spread = 2.54912
 
 [node name="L_Main" type="Node3D"]
 script = ExtResource("1_km1jj")
@@ -83,7 +90,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.75, -20)
 
 [node name="Wall2" parent="ArenaGeometry" instance=ExtResource("3_jw8hm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.75, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0300081, 5.72188, 20.0028)
 
 [node name="Wall3" parent="ArenaGeometry" instance=ExtResource("3_jw8hm")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 20, 5.75, 0)
@@ -225,8 +232,3 @@ shape = SubResource("ConcavePolygonShape3D_do582")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
 environment = SubResource("Environment_7ofk6")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866026, -0.5, 0.75, -0.433013, 0, 5, 0)
-shadow_enabled = true
-directional_shadow_max_distance = 250.0
