@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8fr5xmsrc0hf"]
+
+[ext_resource type="Shader" path="res://Levels/Main/CRT.gdshader" id="1_m3ab4"]
+[ext_resource type="Script" path="res://CRT.gd" id="2_5wvin"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j54m7"]
+shader = ExtResource("1_m3ab4")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.04
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 1.2
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.1
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 2.0
+shader_parameter/static_noise_intensity = 0.05
+shader_parameter/aberration = 0.034
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 1.004
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.6
+shader_parameter/vignette_opacity = 0.33
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 121.0
+offset_top = 89.0
+offset_right = 161.0
+offset_bottom = 158.0
+theme_override_font_sizes/font_size = 50
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="GM" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CRT" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_j54m7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5wvin")
+
+[connection signal="timeout" from="Timer" to="CRT" method="_on_timer_timeout"]

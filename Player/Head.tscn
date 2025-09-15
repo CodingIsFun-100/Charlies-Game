@@ -21,9 +21,20 @@ current = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 light_color = Color(1, 0.663609, 0.357344, 1)
-light_energy = 20.567
+light_energy = 100.0
+light_indirect_energy = 100.0
 light_projector = SubResource("GradientTexture2D_um7ks")
 light_specular = 2.601
 shadow_enabled = true
-spot_range = 22.1411
-spot_angle = 18.9821
+spot_range = 43.5454
+spot_angle = 22.4108
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+light_color = Color(1, 0.663609, 0.357344, 1)
+light_energy = 7.949
+light_indirect_energy = 3.53
+light_projector = SubResource("GradientTexture2D_um7ks")
+light_specular = 2.601
+shadow_enabled = true
+spot_range = 33.0467
+spot_angle = 60.6876
